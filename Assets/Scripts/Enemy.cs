@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float Speed = 4;
+    [SerializeField] private float Speed;
 
    
    
@@ -12,5 +12,9 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(0, -(Speed * Time.deltaTime), 0, Space.World);
         
+    }
+
+    private void OnBecameInvisible() {
+        Destroy(this.gameObject);
     }
 }

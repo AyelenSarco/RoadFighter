@@ -10,21 +10,30 @@ public class Player : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
-            /* multiplicando por Time.deltaTime nos aseguramos que sin importar cuantos frames haya, 
+        CheckInput();
+        
+    }
+
+    private void CheckInput(){
+         /* multiplicando por Time.deltaTime nos aseguramos que sin importar cuantos frames haya, 
             siempre se mueva igual o lo mas parecido posible
                 Video explicandolo --> https://www.youtube.com/watch?v=ix6FAPEF_HA&ab_channel=Guinxu
             */
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
     
-            //this.transform.Translate(-Speed * Time.deltaTime ,0,0);
             this.transform.Translate(Vector2.left * Speed * Time.deltaTime);
 
         }
         
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
-            //this.transform.Translate(Speed * Time.deltaTime ,0,0);
             this.transform.Translate(Vector2.right * Speed * Time.deltaTime);
         }
       
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Chocaste con" + other.name);
+        Destroy(this.gameObject);
+        
     }
 }
